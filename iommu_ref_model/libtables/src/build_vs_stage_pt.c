@@ -14,6 +14,7 @@ add_vs_stage_pte (
     uint64_t a;
     uint8_t i, PTESIZE, LEVELS;
     pte_t nl_pte;
+    uint8_t gxl;
 
     PTESIZE = 8;
     if ( satp.MODE == IOSATP_Sv32 && SXL == 1) {
@@ -43,10 +44,11 @@ add_vs_stage_pte (
         vpn[4] = get_bits(56, 48, va);
         LEVELS = 5;
     }
+    gxl = iommu->reg_file.fctl.gxl;
     i = LEVELS - 1;
     a = satp.PPN * PAGESIZE;
     while ( i > add_level ) {
-        if ( translate_gpa(iohgatp, a, &a) == -1) return -1;
+        if ( translate_gpa(iohgatp, gxl, a, &a) == -1) return -1;
         nl_pte.raw = 0;
         if ( read_memory_test((a | (vpn[i] * PTESIZE)), PTESIZE, (char *)&nl_pte.raw))  return -1;
         if ( nl_pte.V == 0 ) {
@@ -75,7 +77,7 @@ add_vs_stage_pte (
         if ( i < 0 ) return 1;
         a = nl_pte.PPN * PAGESIZE;
     }
-    if ( translate_gpa(iohgatp, a, &a) == -1) return -1;
+    if ( translate_gpa(iohgatp, gxl, a, &a) == -1) return -1;
     if ( write_memory_test((char *)&pte.raw, (a | (vpn[i] * PTESIZE)), PTESIZE) ) return -1;
     return (a | (vpn[i] * PTESIZE));
 }
