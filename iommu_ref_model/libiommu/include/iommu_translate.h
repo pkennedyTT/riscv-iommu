@@ -5,12 +5,14 @@
 #ifndef __IOMMU_TRANSLATE_H__
 #define __IOMMU_TRANSLATE_H__
 
-#define PAGESIZE 4096UL
-#define U_MODE   0
-#define S_MODE   1
-#define PMA      0
-#define NC       1
-#define IO       2
+enum {
+    PAGESIZE = 4096UL,
+    U_MODE   = 0,
+    S_MODE   = 1,
+    PMA      = 0,
+    NC       = 1,
+    IO       = 2,
+};
 typedef union {
     struct {
         uint64_t V:1;

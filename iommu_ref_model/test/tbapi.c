@@ -163,7 +163,7 @@ handle_virtual_interrupt_file_overlap(
     // size, there is nothing to do.
     if (DC->msiptp.MODE == MSIPTP_Off || *gst_page_sz == PAGESIZE)
         return;
-    for (uint64_t sz = PAGESIZE << 36; sz >= (PAGESIZE << 9); sz >>= 9) {
+    for (uint64_t sz = (uint64_t)PAGESIZE << 36; sz >= ((uint64_t)PAGESIZE << 9); sz >>= 9) {
         uint64_t mask = m & ~(sz - 1);
         *gst_page_sz = (*gst_page_sz >= sz && ((gpa & mask) == (p & mask))) ?
                        (sz >> 9) : *gst_page_sz;

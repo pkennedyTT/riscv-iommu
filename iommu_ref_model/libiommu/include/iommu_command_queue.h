@@ -4,21 +4,31 @@
 // Author: ved@rivosinc.com
 #ifndef __IOMMU_COMMAND_QUEUE_H__
 #define __IOMMU_COMMAND_QUEUE_H__
-#define IOTINVAL 1
-#define IOFENCE  2
-#define IODIR    3
-#define ATS      4
+enum {
+     IOTINVAL = 1,
+     IOFENCE  = 2,
+     IODIR    = 3,
+     ATS      = 4,
+};
 
-#define VMA       0
-#define GVMA      1
+enum {
+     VMA       = 0,
+     GVMA      = 1,
+};
 
-#define INVAL_DDT 0
-#define INVAL_PDT 1
+enum {
+     INVAL_DDT = 0,
+     INVAL_PDT = 1,
+};
 
-#define IOFENCE_C 0
+enum {
+     IOFENCE_C = 0,
+};
 
-#define INVAL     0
-#define PRGR      1
+enum {
+    INVAL     = 0,
+    PRGR      = 1,
+};
 typedef union {
     struct {
         uint64_t opcode:7;
@@ -92,7 +102,9 @@ typedef union {
     };
 } command_t;
 
-#define CQ_ENTRY_SZ sizeof(command_t)
+enum {
+    CQ_ENTRY_SZ = sizeof(command_t),
+};
 
 void do_inval_ddt(iommu_t *iommu, uint8_t DV, uint32_t DID);
 void do_inval_pdt(iommu_t *iommu, uint32_t DID, uint32_t PID);

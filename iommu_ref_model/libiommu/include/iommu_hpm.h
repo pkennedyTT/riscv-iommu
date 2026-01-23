@@ -16,15 +16,17 @@
 // | 7          | S/VS-stage Page Table Walks  | 0/1
 // | 8          | G-stage Page Table Walks     | 0/1
 // | 9 - 16383 | reserved for future standard | -
-#define NO_EVENT             0
-#define UNTRANSLATED_REQUEST 1
-#define TRANSLATED_REQUEST   2
-#define TRANSLATION_REQUEST  3
-#define IOATC_TLB_MISS       4
-#define DDT_WALKS            5
-#define PDT_WALKS            6
-#define S_VS_PT_WALKS        7
-#define G_PT_WALKS           8
+enum {
+    NO_EVENT             = 0,
+    UNTRANSLATED_REQUEST = 1,
+    TRANSLATED_REQUEST   = 2,
+    TRANSLATION_REQUEST  = 3,
+    IOATC_TLB_MISS       = 4,
+    DDT_WALKS            = 5,
+    PDT_WALKS            = 6,
+    S_VS_PT_WALKS        = 7,
+    G_PT_WALKS           = 8,
+};
 
 void count_events(iommu_t *iommu, uint8_t PV, uint32_t PID, uint8_t PSCV, uint32_t PSCID,
     uint32_t DID, uint8_t GSCV, uint32_t GSCID, uint16_t eventID);

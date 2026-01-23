@@ -117,11 +117,13 @@ typedef union {
 
 // The G-stage page table format and `MODE` encoding follow the format defined by
 // the privileged specification.
-#define IOHGATP_Bare         0
-#define IOHGATP_Sv32x4       8
-#define IOHGATP_Sv39x4       8
-#define IOHGATP_Sv48x4       9
-#define IOHGATP_Sv57x4       10
+enum {
+    IOHGATP_Bare         = 0,
+    IOHGATP_Sv32x4       = 8,
+    IOHGATP_Sv39x4       = 8,
+    IOHGATP_Sv48x4       = 9,
+    IOHGATP_Sv57x4       = 10,
+};
 // Implementations are not required to support all defined mode settings for
 // `iohgatp`. The IOMMU only needs to support the modes also supported by the MMU
 // in the harts integrated into the system or a subset thereof.
@@ -163,11 +165,13 @@ typedef union {
     uint64_t raw;
 } ta_t;
 
-#define IOSATP_Bare 0
-#define IOSATP_Sv32 8
-#define IOSATP_Sv39 8
-#define IOSATP_Sv48 9
-#define IOSATP_Sv57 10
+enum {
+    IOSATP_Bare = 0,
+    IOSATP_Sv32 = 8,
+    IOSATP_Sv39 = 8,
+    IOSATP_Sv48 = 9,
+    IOSATP_Sv57 = 10,
+};
 // IO SATP
 typedef union {
     struct {
@@ -178,10 +182,12 @@ typedef union {
     uint64_t raw;
 } iosatp_t;
 // First Stage context
-#define PDTP_Bare 0
-#define PD8       1
-#define PD17      2
-#define PD20      3
+enum {
+    PDTP_Bare = 0,
+    PD8       = 1,
+    PD17      = 2,
+    PD20      = 3,
+};
 typedef union {
     // If `PDTV` is 0, the `fsc` field in `DC` holds the `iosatp` (when `iohgatp MODE`
     // is `Bare`) or the `iovsatp` (when `iohgatp MODE` is not `Bare`) that provide the
@@ -246,8 +252,10 @@ typedef union {
 // | 2-13 | --       | Reserved
 // |14-15 | --       | Custom
 
-#define MSIPTP_Off  0
-#define MSIPTP_Flat 1
+enum {
+    MSIPTP_Off  = 0,
+    MSIPTP_Flat = 1,
+};
 typedef union {
     struct {
         uint64_t PPN:44;
@@ -310,8 +318,10 @@ typedef struct {
     msi_addr_pattern_t  msi_addr_pattern;
     uint64_t  reserved;
 } device_context_t;
-#define BASE_FORMAT_DC_SIZE 32
-#define EXT_FORMAT_DC_SIZE  64
+enum {
+    BASE_FORMAT_DC_SIZE = 32,
+    EXT_FORMAT_DC_SIZE  = 64,
+};
 
 // A valid (`V==1`) non-leaf DDT entry provides PPN of the next level DDT.
 typedef union {

@@ -19,8 +19,10 @@ extern uint8_t write_memory_test(char *data, uint64_t address, uint32_t size);
 extern uint64_t read_register(iommu_t *iommu, uint16_t offset, uint8_t num_bytes);
 extern void write_register(iommu_t *iommu, uint16_t offset, uint8_t num_bytes, uint64_t data);
 
-#define FILL_IOATC_ATS_T2GPA  0x01
-#define FILL_IOATC_ATS_ALWAYS 0x02
+enum {
+    FILL_IOATC_ATS_T2GPA  = 0x01,
+    FILL_IOATC_ATS_ALWAYS = 0x02,
+};
 extern int reset_iommu(iommu_t *iommu, uint8_t num_hpm, uint8_t hpmctr_bits, uint16_t eventID_limit,
                        uint8_t num_vec_bits, uint8_t reset_iommu_mode,
                        uint8_t max_iommu_mode, uint32_t max_devid_mask,

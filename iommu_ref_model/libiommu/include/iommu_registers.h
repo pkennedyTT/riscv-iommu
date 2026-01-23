@@ -651,159 +651,165 @@ typedef union {                        // |Ofst|Name            |Size|Descriptio
 } iommu_regs_t;
 
 // Offset to field
-#define CAPABILITIES_OFFSET  0
-#define FCTRL_OFFSET         8
-#define DDTP_OFFSET          16
-#define CQB_OFFSET           24
-#define CQH_OFFSET           32
-#define CQT_OFFSET           36
-#define FQB_OFFSET           40
-#define FQH_OFFSET           48
-#define FQT_OFFSET           52
-#define PQB_OFFSET           56
-#define PQH_OFFSET           64
-#define PQT_OFFSET           68
-#define CQCSR_OFFSET         72
-#define FQCSR_OFFSET         76
-#define PQCSR_OFFSET         80
-#define IPSR_OFFSET          84
-#define IOCNTOVF_OFFSET      88
-#define IOCNTINH_OFFSET      92
-#define IOHPMCYCLES_OFFSET   96
+enum {
+    CAPABILITIES_OFFSET  = 0,
+    FCTRL_OFFSET         = 8,
+    DDTP_OFFSET          = 16,
+    CQB_OFFSET           = 24,
+    CQH_OFFSET           = 32,
+    CQT_OFFSET           = 36,
+    FQB_OFFSET           = 40,
+    FQH_OFFSET           = 48,
+    FQT_OFFSET           = 52,
+    PQB_OFFSET           = 56,
+    PQH_OFFSET           = 64,
+    PQT_OFFSET           = 68,
+    CQCSR_OFFSET         = 72,
+    FQCSR_OFFSET         = 76,
+    PQCSR_OFFSET         = 80,
+    IPSR_OFFSET          = 84,
+    IOCNTOVF_OFFSET      = 88,
+    IOCNTINH_OFFSET      = 92,
+    IOHPMCYCLES_OFFSET   = 96,
 
-#define IOHPMCTR1_OFFSET     104
-#define IOHPMCTR2_OFFSET     112
-#define IOHPMCTR3_OFFSET     120
-#define IOHPMCTR4_OFFSET     128
-#define IOHPMCTR5_OFFSET     136
-#define IOHPMCTR6_OFFSET     144
-#define IOHPMCTR7_OFFSET     152
-#define IOHPMCTR8_OFFSET     160
-#define IOHPMCTR9_OFFSET     168
-#define IOHPMCTR10_OFFSET    176
-#define IOHPMCTR11_OFFSET    184
-#define IOHPMCTR12_OFFSET    192
-#define IOHPMCTR13_OFFSET    200
-#define IOHPMCTR14_OFFSET    208
-#define IOHPMCTR15_OFFSET    216
-#define IOHPMCTR16_OFFSET    224
-#define IOHPMCTR17_OFFSET    232
-#define IOHPMCTR18_OFFSET    240
-#define IOHPMCTR19_OFFSET    248
-#define IOHPMCTR20_OFFSET    256
-#define IOHPMCTR21_OFFSET    264
-#define IOHPMCTR22_OFFSET    272
-#define IOHPMCTR23_OFFSET    280
-#define IOHPMCTR24_OFFSET    288
-#define IOHPMCTR25_OFFSET    296
-#define IOHPMCTR26_OFFSET    304
-#define IOHPMCTR27_OFFSET    312
-#define IOHPMCTR28_OFFSET    320
-#define IOHPMCTR29_OFFSET    328
-#define IOHPMCTR30_OFFSET    336
-#define IOHPMCTR31_OFFSET    344
+    IOHPMCTR1_OFFSET     = 104,
+    IOHPMCTR2_OFFSET     = 112,
+    IOHPMCTR3_OFFSET     = 120,
+    IOHPMCTR4_OFFSET     = 128,
+    IOHPMCTR5_OFFSET     = 136,
+    IOHPMCTR6_OFFSET     = 144,
+    IOHPMCTR7_OFFSET     = 152,
+    IOHPMCTR8_OFFSET     = 160,
+    IOHPMCTR9_OFFSET     = 168,
+    IOHPMCTR10_OFFSET    = 176,
+    IOHPMCTR11_OFFSET    = 184,
+    IOHPMCTR12_OFFSET    = 192,
+    IOHPMCTR13_OFFSET    = 200,
+    IOHPMCTR14_OFFSET    = 208,
+    IOHPMCTR15_OFFSET    = 216,
+    IOHPMCTR16_OFFSET    = 224,
+    IOHPMCTR17_OFFSET    = 232,
+    IOHPMCTR18_OFFSET    = 240,
+    IOHPMCTR19_OFFSET    = 248,
+    IOHPMCTR20_OFFSET    = 256,
+    IOHPMCTR21_OFFSET    = 264,
+    IOHPMCTR22_OFFSET    = 272,
+    IOHPMCTR23_OFFSET    = 280,
+    IOHPMCTR24_OFFSET    = 288,
+    IOHPMCTR25_OFFSET    = 296,
+    IOHPMCTR26_OFFSET    = 304,
+    IOHPMCTR27_OFFSET    = 312,
+    IOHPMCTR28_OFFSET    = 320,
+    IOHPMCTR29_OFFSET    = 328,
+    IOHPMCTR30_OFFSET    = 336,
+    IOHPMCTR31_OFFSET    = 344,
 
-#define IOHPMEVT1_OFFSET     352
-#define IOHPMEVT2_OFFSET     360
-#define IOHPMEVT3_OFFSET     368
-#define IOHPMEVT4_OFFSET     376
-#define IOHPMEVT5_OFFSET     384
-#define IOHPMEVT6_OFFSET     392
-#define IOHPMEVT7_OFFSET     400
-#define IOHPMEVT8_OFFSET     408
-#define IOHPMEVT9_OFFSET     416
-#define IOHPMEVT10_OFFSET    424
-#define IOHPMEVT11_OFFSET    432
-#define IOHPMEVT12_OFFSET    440
-#define IOHPMEVT13_OFFSET    448
-#define IOHPMEVT14_OFFSET    456
-#define IOHPMEVT15_OFFSET    464
-#define IOHPMEVT16_OFFSET    472
-#define IOHPMEVT17_OFFSET    480
-#define IOHPMEVT18_OFFSET    488
-#define IOHPMEVT19_OFFSET    496
-#define IOHPMEVT20_OFFSET    504
-#define IOHPMEVT21_OFFSET    512
-#define IOHPMEVT22_OFFSET    520
-#define IOHPMEVT23_OFFSET    528
-#define IOHPMEVT24_OFFSET    536
-#define IOHPMEVT25_OFFSET    544
-#define IOHPMEVT26_OFFSET    552
-#define IOHPMEVT27_OFFSET    560
-#define IOHPMEVT28_OFFSET    568
-#define IOHPMEVT29_OFFSET    576
-#define IOHPMEVT30_OFFSET    584
-#define IOHPMEVT31_OFFSET    592
-#define TR_REQ_IOVA_OFFSET   600
-#define TR_REQ_CTRL_OFFSET   608
-#define TR_RESPONSE_OFFSET   616
-#define IOMMU_QOSID_OFFSET   624
-#define RESERVED_OFFSET      628
-#define CUSTOM_OFFSET        688
-#define ICVEC_OFFSET         760
+    IOHPMEVT1_OFFSET     = 352,
+    IOHPMEVT2_OFFSET     = 360,
+    IOHPMEVT3_OFFSET     = 368,
+    IOHPMEVT4_OFFSET     = 376,
+    IOHPMEVT5_OFFSET     = 384,
+    IOHPMEVT6_OFFSET     = 392,
+    IOHPMEVT7_OFFSET     = 400,
+    IOHPMEVT8_OFFSET     = 408,
+    IOHPMEVT9_OFFSET     = 416,
+    IOHPMEVT10_OFFSET    = 424,
+    IOHPMEVT11_OFFSET    = 432,
+    IOHPMEVT12_OFFSET    = 440,
+    IOHPMEVT13_OFFSET    = 448,
+    IOHPMEVT14_OFFSET    = 456,
+    IOHPMEVT15_OFFSET    = 464,
+    IOHPMEVT16_OFFSET    = 472,
+    IOHPMEVT17_OFFSET    = 480,
+    IOHPMEVT18_OFFSET    = 488,
+    IOHPMEVT19_OFFSET    = 496,
+    IOHPMEVT20_OFFSET    = 504,
+    IOHPMEVT21_OFFSET    = 512,
+    IOHPMEVT22_OFFSET    = 520,
+    IOHPMEVT23_OFFSET    = 528,
+    IOHPMEVT24_OFFSET    = 536,
+    IOHPMEVT25_OFFSET    = 544,
+    IOHPMEVT26_OFFSET    = 552,
+    IOHPMEVT27_OFFSET    = 560,
+    IOHPMEVT28_OFFSET    = 568,
+    IOHPMEVT29_OFFSET    = 576,
+    IOHPMEVT30_OFFSET    = 584,
+    IOHPMEVT31_OFFSET    = 592,
+    TR_REQ_IOVA_OFFSET   = 600,
+    TR_REQ_CTRL_OFFSET   = 608,
+    TR_RESPONSE_OFFSET   = 616,
+    IOMMU_QOSID_OFFSET   = 624,
+    RESERVED_OFFSET      = 628,
+    CUSTOM_OFFSET        = 688,
+    ICVEC_OFFSET         = 760,
 
-#define MSI_ADDR_0_OFFSET      768 + 0 * 16 + 0
-#define MSI_DATA_0_OFFSET      768 + 0 * 16 + 8
-#define MSI_VEC_CTRL_0_OFFSET  768 + 0 * 16 + 12
-#define MSI_ADDR_1_OFFSET      768 + 1 * 16 + 0
-#define MSI_DATA_1_OFFSET      768 + 1 * 16 + 8
-#define MSI_VEC_CTRL_1_OFFSET  768 + 1 * 16 + 12
-#define MSI_ADDR_2_OFFSET      768 + 2 * 16 + 0
-#define MSI_DATA_2_OFFSET      768 + 2 * 16 + 8
-#define MSI_VEC_CTRL_2_OFFSET  768 + 2 * 16 + 12
-#define MSI_ADDR_3_OFFSET      768 + 3 * 16 + 0
-#define MSI_DATA_3_OFFSET      768 + 3 * 16 + 8
-#define MSI_VEC_CTRL_3_OFFSET  768 + 3 * 16 + 12
-#define MSI_ADDR_4_OFFSET      768 + 4 * 16 + 0
-#define MSI_DATA_4_OFFSET      768 + 4 * 16 + 8
-#define MSI_VEC_CTRL_4_OFFSET  768 + 4 * 16 + 12
-#define MSI_ADDR_5_OFFSET      768 + 5 * 16 + 0
-#define MSI_DATA_5_OFFSET      768 + 5 * 16 + 8
-#define MSI_VEC_CTRL_5_OFFSET  768 + 5 * 16 + 12
-#define MSI_ADDR_6_OFFSET      768 + 6 * 16 + 0
-#define MSI_DATA_6_OFFSET      768 + 6 * 16 + 8
-#define MSI_VEC_CTRL_6_OFFSET  768 + 6 * 16 + 12
-#define MSI_ADDR_7_OFFSET      768 + 7 * 16 + 0
-#define MSI_DATA_7_OFFSET      768 + 7 * 16 + 8
-#define MSI_VEC_CTRL_7_OFFSET  768 + 7 * 16 + 12
-#define MSI_ADDR_8_OFFSET      768 + 8 * 16 + 0
-#define MSI_DATA_8_OFFSET      768 + 8 * 16 + 8
-#define MSI_VEC_CTRL_8_OFFSET  768 + 8 * 16 + 12
-#define MSI_ADDR_9_OFFSET      768 + 9 * 16 + 0
-#define MSI_DATA_9_OFFSET      768 + 9 * 16 + 8
-#define MSI_VEC_CTRL_9_OFFSET  768 + 9 * 16 + 12
-#define MSI_ADDR_10_OFFSET     768 + 10 * 16 + 0
-#define MSI_DATA_10_OFFSET     768 + 10 * 16 + 8
-#define MSI_VEC_CTRL_10_OFFSET 768 + 10 * 16 + 12
-#define MSI_ADDR_11_OFFSET     768 + 11 * 16 + 0
-#define MSI_DATA_11_OFFSET     768 + 11 * 16 + 8
-#define MSI_VEC_CTRL_11_OFFSET 768 + 11 * 16 + 12
-#define MSI_ADDR_12_OFFSET     768 + 12 * 16 + 0
-#define MSI_DATA_12_OFFSET     768 + 12 * 16 + 8
-#define MSI_VEC_CTRL_12_OFFSET 768 + 12 * 16 + 12
-#define MSI_ADDR_13_OFFSET     768 + 13 * 16 + 0
-#define MSI_DATA_13_OFFSET     768 + 13 * 16 + 8
-#define MSI_VEC_CTRL_13_OFFSET 768 + 13 * 16 + 12
-#define MSI_ADDR_14_OFFSET     768 + 14 * 16 + 0
-#define MSI_DATA_14_OFFSET     768 + 14 * 16 + 8
-#define MSI_VEC_CTRL_14_OFFSET 768 + 14 * 16 + 12
-#define MSI_ADDR_15_OFFSET     768 + 15 * 16 + 0
-#define MSI_DATA_15_OFFSET     768 + 15 * 16 + 8
-#define MSI_VEC_CTRL_15_OFFSET 768 + 15 * 16 + 12
+    MSI_ADDR_0_OFFSET      = 768 + 0 * 16 + 0,
+    MSI_DATA_0_OFFSET      = 768 + 0 * 16 + 8,
+    MSI_VEC_CTRL_0_OFFSET  = 768 + 0 * 16 + 12,
+    MSI_ADDR_1_OFFSET      = 768 + 1 * 16 + 0,
+    MSI_DATA_1_OFFSET      = 768 + 1 * 16 + 8,
+    MSI_VEC_CTRL_1_OFFSET  = 768 + 1 * 16 + 12,
+    MSI_ADDR_2_OFFSET      = 768 + 2 * 16 + 0,
+    MSI_DATA_2_OFFSET      = 768 + 2 * 16 + 8,
+    MSI_VEC_CTRL_2_OFFSET  = 768 + 2 * 16 + 12,
+    MSI_ADDR_3_OFFSET      = 768 + 3 * 16 + 0,
+    MSI_DATA_3_OFFSET      = 768 + 3 * 16 + 8,
+    MSI_VEC_CTRL_3_OFFSET  = 768 + 3 * 16 + 12,
+    MSI_ADDR_4_OFFSET      = 768 + 4 * 16 + 0,
+    MSI_DATA_4_OFFSET      = 768 + 4 * 16 + 8,
+    MSI_VEC_CTRL_4_OFFSET  = 768 + 4 * 16 + 12,
+    MSI_ADDR_5_OFFSET      = 768 + 5 * 16 + 0,
+    MSI_DATA_5_OFFSET      = 768 + 5 * 16 + 8,
+    MSI_VEC_CTRL_5_OFFSET  = 768 + 5 * 16 + 12,
+    MSI_ADDR_6_OFFSET      = 768 + 6 * 16 + 0,
+    MSI_DATA_6_OFFSET      = 768 + 6 * 16 + 8,
+    MSI_VEC_CTRL_6_OFFSET  = 768 + 6 * 16 + 12,
+    MSI_ADDR_7_OFFSET      = 768 + 7 * 16 + 0,
+    MSI_DATA_7_OFFSET      = 768 + 7 * 16 + 8,
+    MSI_VEC_CTRL_7_OFFSET  = 768 + 7 * 16 + 12,
+    MSI_ADDR_8_OFFSET      = 768 + 8 * 16 + 0,
+    MSI_DATA_8_OFFSET      = 768 + 8 * 16 + 8,
+    MSI_VEC_CTRL_8_OFFSET  = 768 + 8 * 16 + 12,
+    MSI_ADDR_9_OFFSET      = 768 + 9 * 16 + 0,
+    MSI_DATA_9_OFFSET      = 768 + 9 * 16 + 8,
+    MSI_VEC_CTRL_9_OFFSET  = 768 + 9 * 16 + 12,
+    MSI_ADDR_10_OFFSET     = 768 + 10 * 16 + 0,
+    MSI_DATA_10_OFFSET     = 768 + 10 * 16 + 8,
+    MSI_VEC_CTRL_10_OFFSET = 768 + 10 * 16 + 12,
+    MSI_ADDR_11_OFFSET     = 768 + 11 * 16 + 0,
+    MSI_DATA_11_OFFSET     = 768 + 11 * 16 + 8,
+    MSI_VEC_CTRL_11_OFFSET = 768 + 11 * 16 + 12,
+    MSI_ADDR_12_OFFSET     = 768 + 12 * 16 + 0,
+    MSI_DATA_12_OFFSET     = 768 + 12 * 16 + 8,
+    MSI_VEC_CTRL_12_OFFSET = 768 + 12 * 16 + 12,
+    MSI_ADDR_13_OFFSET     = 768 + 13 * 16 + 0,
+    MSI_DATA_13_OFFSET     = 768 + 13 * 16 + 8,
+    MSI_VEC_CTRL_13_OFFSET = 768 + 13 * 16 + 12,
+    MSI_ADDR_14_OFFSET     = 768 + 14 * 16 + 0,
+    MSI_DATA_14_OFFSET     = 768 + 14 * 16 + 8,
+    MSI_VEC_CTRL_14_OFFSET = 768 + 14 * 16 + 12,
+    MSI_ADDR_15_OFFSET     = 768 + 15 * 16 + 0,
+    MSI_DATA_15_OFFSET     = 768 + 15 * 16 + 8,
+    MSI_VEC_CTRL_15_OFFSET = 768 + 15 * 16 + 12,
+};
 
 // capabilities fields
-#define MSI      0
-#define WSI      1
-#define IGS_BOTH 2
-#define ONE_END   0
-#define BOTH_END  1
+enum {
+    MSI      = 0,
+    WSI      = 1,
+    IGS_BOTH = 2,
+    ONE_END   = 0,
+    BOTH_END  = 1,
+};
 
 // ddtp defines
-#define Off      0
-#define DDT_Bare 1
-#define DDT_1LVL 2
-#define DDT_2LVL 3
-#define DDT_3LVL 4
+enum {
+    Off      = 0,
+    DDT_Bare = 1,
+    DDT_1LVL = 2,
+    DDT_2LVL = 3,
+    DDT_3LVL = 4,
+};
 
 extern void process_commands(iommu_t *iommu);
 #endif //_IOMMU_REGS_H_

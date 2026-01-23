@@ -20,15 +20,17 @@
 // |9      | Message Request
 // |10 - 31| Reserved
 // |31 - 63| Reserved for custom use
-#define TTYPE_NONE                                0
-#define UNTRANSLATED_READ_FOR_EXECUTE_TRANSACTION 1
-#define UNTRANSLATED_READ_TRANSACTION             2
-#define UNTRANSLATED_WRITE_AMO_TRANSACTION        3
-#define TRANSLATED_READ_FOR_EXECUTE_TRANSACTION   5
-#define TRANSLATED_READ_TRANSACTION               6
-#define TRANSLATED_WRITE_AMO_TRANSACTION          7
-#define PCIE_ATS_TRANSLATION_REQUEST              8
-#define PCIE_MESSAGE_REQUEST                      9
+enum {
+    TTYPE_NONE                                = 0,
+    UNTRANSLATED_READ_FOR_EXECUTE_TRANSACTION = 1,
+    UNTRANSLATED_READ_TRANSACTION             = 2,
+    UNTRANSLATED_WRITE_AMO_TRANSACTION        = 3,
+    TRANSLATED_READ_FOR_EXECUTE_TRANSACTION   = 5,
+    TRANSLATED_READ_TRANSACTION               = 6,
+    TRANSLATED_WRITE_AMO_TRANSACTION          = 7,
+    PCIE_ATS_TRANSLATION_REQUEST              = 8,
+    PCIE_MESSAGE_REQUEST                      = 9,
+};
 
 
 // Fault-queue record
@@ -57,14 +59,20 @@ typedef union {
     };
     uint64_t raw[4];
 } fault_rec_t;
-#define ACCESS_FAULT    0x01
-#define DATA_CORRUPTION 0x02
+enum {
+    ACCESS_FAULT    = 0x01,
+    DATA_CORRUPTION = 0x02,
+};
 
-#define GST_PAGE_FAULT       0x21
-#define GST_ACCESS_FAULT     0x22
-#define GST_DATA_CORRUPTION  0x23
+enum {
+    GST_PAGE_FAULT       = 0x21,
+    GST_ACCESS_FAULT     = 0x22,
+    GST_DATA_CORRUPTION  = 0x23,
+};
 
-#define FQ_ENTRY_SZ sizeof(fault_rec_t)
+enum {
+    FQ_ENTRY_SZ = sizeof(fault_rec_t),
+};
 
 extern void report_fault(iommu_t *iommu, uint16_t cause, uint64_t iotval, uint64_t iotval2, uint8_t TTYP, uint8_t dtf,
                   uint32_t device_id, uint8_t pid_valid, uint32_t process_id, uint8_t priv_req);

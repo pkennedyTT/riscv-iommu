@@ -5,12 +5,16 @@
 #ifndef __IOMMU_INTERRUPT_H__
 #define __IOMMU_INTERRUPT_H__
 
-#define COMMAND_QUEUE 0
-#define FAULT_QUEUE   1
-#define HPM           2
-#define PAGE_QUEUE    3
+enum {
+    COMMAND_QUEUE = 0,
+    FAULT_QUEUE   = 1,
+    HPM           = 2,
+    PAGE_QUEUE    = 3,
+};
 
-#define MSI_VEC_CTRL_MASK_BIT 1
+enum {
+    MSI_VEC_CTRL_MASK_BIT = 1,
+};
 
 extern void generate_interrupt(iommu_t *iommu, uint8_t unit);
 extern void release_pending_interrupt(iommu_t *iommu, uint8_t vec);

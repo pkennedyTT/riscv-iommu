@@ -50,13 +50,17 @@ typedef struct {
     uint8_t           valid;
 } pdt_cache_t;
 
-#define DDT_CACHE_SIZE 2
-#define PDT_CACHE_SIZE 2
-#define TLB_SIZE       2
+enum {
+    DDT_CACHE_SIZE = 2,
+    PDT_CACHE_SIZE = 2,
+    TLB_SIZE       = 2,
+};
 
-#define IOATC_MISS  0
-#define IOATC_HIT   1
-#define IOATC_FAULT 2
+enum {
+    IOATC_MISS  = 0,
+    IOATC_HIT   = 1,
+    IOATC_FAULT = 2,
+};
 
 extern void
 cache_ioatc_iotlb(

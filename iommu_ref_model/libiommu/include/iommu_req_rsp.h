@@ -19,8 +19,10 @@ typedef enum {
     ADDR_TYPE_PCIE_ATS_TRANSLATION_REQUEST = 1,
     ADDR_TYPE_TRANSLATED = 2
 } addr_type_t;
-#define READ      0
-#define WRITE     1
+enum {
+    READ      = 0,
+    WRITE     = 1,
+};
 typedef struct {
     addr_type_t at;
     uint64_t    iova;
