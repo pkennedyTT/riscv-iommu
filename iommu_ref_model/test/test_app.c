@@ -3774,6 +3774,59 @@ main(void) {
 
     END_TEST();
 
+    START_TEST("Debug request with Priv=1 and PV=0");
+
+    // Section 2.3 of the IOMMU spec describes the following requirement on the
+    // IO bridge when submitting translation requests to the IOMMU:
+    //
+    //   When a privilege mode is not explicitly associated with the request
+    //   (e.g., using a PCIe PASID), the default privilege mode must be User.
+    //   For requests without a process_id the privilege mode must be User.
+    // 
+    // The same behavior applies to when the translation request is submitted
+    // using the debug interface. This test checks that such as request does
+    // not fault.
+    //
+    // See https://github.com/riscv-non-isa/riscv-iommu/issues/726
+
+    DC_addr = add_device(
+        &iommu,             // iommu
+        0x012346,           // device_id
+        1,                  // gscid
+        0,                  // en_ats
+        0,                  // en_pri
+        0,                  // t2gpa
+        0,                  // dtf
+        0,                  // prpr
+        1,                  // gade
+        1,                  // sade
+        0,                  // dpe
+        0,                  // sbe
+        0,                  // sxl
+        IOHGATP_Bare,       // iohgatp_mode
+        IOSATP_Bare,        // iosatp_mode
+        PD20,               // pdt_mode
+        MSIPTP_Off,         // msiptp_mode
+        1,                  // msiptp_pages
+        0xFFFFFFFFFF,       // msi_addr_mask
+        0x1000000000        // msi_addr_pattern
+    );
+
+    tr_req_ctrl.go_busy = 1;
+    tr_req_ctrl.Priv = 1;
+    tr_req_ctrl.Exe = 0;
+    tr_req_ctrl.NW = 1;
+    tr_req_ctrl.PID = 0;
+    tr_req_ctrl.PV = 0;
+    tr_req_ctrl.DID = 0x012346;
+    tr_req_iova.raw = gva;
+    write_register(&iommu, TR_REQ_IOVA_OFFSET, 8, tr_req_iova.raw);
+    write_register(&iommu, TR_REQ_CTRL_OFFSET, 8, tr_req_ctrl.raw);
+    tr_response.raw = read_register(&iommu, TR_RESPONSE_OFFSET, 8);
+    fail_if( ( tr_response.fault == 1 ) );
+
+    END_TEST();
+
     START_TEST("Illegal commands and CQ mem faults");
     // illegal command
     cmd.any.opcode = 9;
